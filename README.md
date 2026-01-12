@@ -1,4 +1,4 @@
-# Your startup name here
+# ImageBoard
 
 [My Notes](notes.md)
 
