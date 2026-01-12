@@ -1,4 +1,5 @@
 # CS 260 Notes
+Here is a modification because I already know how to use git.
 
 [My startup - Simon](https://simon.cs260.click)
 
