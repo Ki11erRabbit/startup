@@ -2,13 +2,12 @@
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This is an image board site where users can post images to share in different themed categories.
+They can also provide text to go with the image to talk about the image or whatever they want.
+The categories are up to the users of the site to create.
+In other words, this is supposed to be set up by other people to be self hosted.
 
-> [!NOTE]
-> This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
 
-> [!NOTE]
-> If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
 
 ## 🚀 Specification Deliverable
 
@@ -17,45 +16,59 @@ A brief description of the application here. Lorem ipsum dolor sit amet, consect
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [X] Proper use of Markdown
+- [X] A concise and compelling elevator pitch
+- [X] Description of key features
+- [X] Description of how you will use each technology
+- [X] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+I want to see if I can leverage the Fediverse to create a new social media platform for the Fediverse.
+This is an image board site where users can post images to share in different themed categories.
+They can also provide text to go with the image to talk about the image or whatever they want.
+People can reply to posts with more images or posts.
+The categories are up to the users of the site to create.
+In other words, this is supposed to be set up by other people to be self hosted.
 
 ### Design
 
-![Design image](placeholder.png)
+![Landing Page](images/mockup/landing_page.png)
+![Board Page](images/mockup/board_page.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+In the first image we have the simple landing page where users can select which board they want to go to.
+The differnt boards are in a grid and each is a link that takes you to a different board.
+There is a branding image near the bottom.
 
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
+The board page is where users can see and post things.
+The design is missing a post button but right now I want to get the over all look and feel right.
+Replies are indented over a certain amount to indicate that they are a reply to that post or comment.
+
+For both, the top right corner lists an icon for showing if there are any replies and menu if the user clicks on their username.
+
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Interaction with the ActivityPub Protocol
+- Ability to post images with text (and alt text)
+- Ability to federate with other Fediverse projects like Mastodon
+- Moderation tools to reduce spam, and delete "questionable" posts
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Organize the website into key structural elements that can easily be stylized by CSS.
+- **CSS** - Used to make the site look pretty and appealing to users on both desktop and mobile.
+- **React** - Used to make the site be dynamic and responsive so that it can actually behave as a social media platform
+- **Service** - Endpoints for
+    - ActivityPub
+    - Fetching Boards
+    - Fetching Posts
+    - Moderation tools for Moderators
+    - User authentication. Logging in/out, registering, creation of moderators
+- **DB/Login** - Store user posts, user information, authtokens, moderator status of users.
+- **WebSocket** - Site can inform the user that they are new replies to their post.
 
 ## 🚀 AWS deliverable
 
