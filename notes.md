@@ -11,12 +11,15 @@ Here is a modification because I already know how to use git.
 
 ## AWS
 
-My IP address is: 54.81.96.130
-Launching my AMI I initially put it on a private subnet. Even though it had a public IP address and the security group was right, I wasn't able to connect to it.
+My IP address is: 100.28.122.201
+
+I first hooked in everything before I actually got the domain and so it took a little while for the dns records to "propagate"
+This is a useful website [Whats My DNS.net](https://www.whatsmydns.net).
 
 ## Caddy
 
 No problems worked just like it said in the [instruction](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md).
+I did have some issues trying to configure neovim to use instead of vim since I don't use qwerty but I stripped down my config and got something that I can at least use.
 
 ## HTML
 
