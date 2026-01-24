@@ -23,9 +23,13 @@ I did have some issues trying to configure neovim to use instead of vim since I 
 
 ## HTML
 
-This was easy. I was careful to use the correct structural elements such as header, footer, main, nav, and form. The links between the three views work great using the `a` element.
+I have some experience in HTML so it was not hard to design things with CSS in mind for the future.
+Because of my experience, it didn't take that long add things.
+The only annoying part was adding an image because I didn't want to grab random ones off the internet for copyright reasons.
+Instead I figured out how to draw svgs and drew a circle with a circle cut out of it.
+I stubbed out an example board that will be the template for the other boards. 
+I also added a login screen to the username link but that should eventually show a dashboard if the user is already logged in.
 
-The part I didn't like was the duplication of the header and footer code. This is messy, but it will get cleaned up when I get to React.
 
 ## CSS
 
