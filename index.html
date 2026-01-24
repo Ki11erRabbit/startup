@@ -12,6 +12,7 @@
             <h1>Startup</h1>
             <nav>
                 <a href="index.html">Home</a>
+            <!-- Emoji by username will change depending on messages. It may become an icon instead-->
                 <a href="user.html">📬 UserName</a>
             </nav>
             <hr/>
@@ -29,6 +30,16 @@
                     </menu>
                 </div>
             </div>
+            <!-- logo placeholder-->
+            <svg width="200" height="200" viewBox="0 0 200 200">
+                <defs>
+                    <mask id="cutout">
+                    <rect width="200" height="200" fill="white"/>
+                    <circle cx="130" cy="80" r="40" fill="black"/>
+                    </mask>
+                </defs>
+                <circle cx="100" cy="100" r="80" fill="currentColor" mask="url(#cutout)"/>
+            </svg>
         </main>
         <footer>
             <hr />
