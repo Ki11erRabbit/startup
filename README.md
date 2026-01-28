@@ -80,15 +80,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [X] **HTML pages** - I did complete the part of the deliverable.
-- [X] **Proper HTML element usage** - I did complete the part of the deliverable.
-- [X] **Links** - I did complete the part of the deliverable.
-- [X] **Text** - I did complete the part of the deliverable.
-- [X] **3rd party API placeholder** - I did complete the part of the deliverable.
-- [X] **Images** - I did complete the part of the deliverable.
-- [X] **Login placeholder** - I did complete the part of the deliverable.
-- [X] **DB data placeholder** - I did complete the part of the deliverable.
-- [X] **WebSocket placeholder** - I did complete the part of the deliverable.
+- [X] **HTML pages** - I made HTML pages for the home page, an example board, and the login screen.
+- [X] **Proper HTML element usage** - I made sure to semantic tags to better inform intent.
+- [X] **Links** - There is a link to each of the required pages for this deliverable.
+- [X] **Text** - There is text for various places to access the website.
+- [X] **3rd party API placeholder** - There are a few buttons that don't do anything because there is no api.
+- [X] **Images** - I used the SVG logo I made as a placeholder for brand images as well as user images.
+- [X] **Login placeholder** - I stubbed out the login/sign in page.
+- [X] **DB data placeholder** - I used everyone's favorite sample text for the message body of posts.
+- [X] **WebSocket placeholder** - The emoji on each page should change depending on the replies the user has received.
 
 ## 🚀 CSS deliverable
 
