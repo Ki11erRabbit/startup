@@ -1,0 +1,28 @@
+
+
+.board {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: var(--post-border) solid;
+    max-width: 30%;
+    margin: 0 auto;
+}
+
+.board h2 {
+    padding: auto;
+    justify-content: center;
+}
+
+.board-items {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+
+.board-items li {
+    padding: 2vw;
+}
+
