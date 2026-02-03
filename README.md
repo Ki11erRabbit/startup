@@ -98,7 +98,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Use of a CSS framework** - I used tailwind for some more more "universal" components but hand rolled CSS everywhere else. I picked tailwind because it is what our frontend team is using for my capstone project.
 - [x] **All visual elements styled using CSS** - I used css to target everything and fit the theme that I am going for.
 - [x] **Responsive to window resizing using flexbox and/or grid display** - I used a lot of flexbox and a little bit of grid.
-- [ ] **Use of a imported font** - I did not complete this part of the deliverable.
+- [x] **Use of a imported font** - I used Roboto because I like it as a font and made it be used everywhere.
 - [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I used a bunch of different selectors, although I think I mostly used ID to meet the requirements more than anything.
 
 ## 🚀 React part 1: Routing deliverable
