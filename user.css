@@ -1,0 +1,17 @@
+
+form {
+    margin-bottom: 3vh;
+}
+
+input:focus {
+    border: var(--post-border);
+}
+
+button {
+    background-color: var(--post-bg);
+    border: var(--post-bg) solid !important;
+}
+
+button:hover {
+    border: var(--post-border) solid !important;
+}

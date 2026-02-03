@@ -8,36 +8,55 @@
     <link rel="icon" href="favicon.ico" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="main.css"/>
+    <link rel="stylesheet" href="user.css"/>
     <link rel="stylesheet" href="vars.css"/>
     </head>
     <body>
-        <header>
-            <h1>Login or Create</h1>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="user.html">📬 UserName</a>
-            </nav>
-            <hr/>
-        </header>
-        <main>
-            <div>
-                <h1>User Information</h1>
-                <br/>
-            </div>
-            <div>
-                <form method="post">
-                    <input type="text" placeholder="your@email.com"/>
-                    <input type="password" placeholder="password"/>
-                    <button type="submit">Login</button>
-                    <button type="submit">Create</button>
-                </form>
-            </div>
-        </main>
-        <footer>
-            <hr />
-            <span class="text-reset">Alec Davis</span>
-            <br />
-            <a href="https://github.com/Ki11erRabbit/startup">GitHub</a>
-        </footer>
-    </body>
+    <header class="w-full">
+        <h1 class="mb-4 text-4xl font-bold tracking-tight text-center md:text-5xl">Login or Create</h1>
+        <nav class="flex justify-between items-center w-full px-4">
+            <a href="index.html" class="hover:underline">Home</a>
+            <a href="user.html" class="hover:underline">📬 UserName</a>
+        </nav>
+        <hr class="my-4"/>
+    </header>
+    
+    <main class="flex-1 flex items-center justify-center px-4">
+        <div class="w-full max-w-md">
+            <h1 class="text-2xl font-semibold text-center mb-6">User Information</h1>
+            
+            <form method="post" class="space-y-4">
+                <input 
+                    type="text" 
+                    placeholder="your@email.com"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
+                />
+                <input 
+                    type="password" 
+                    placeholder="password"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
+                />
+                <div class="flex gap-4">
+                    <button 
+                        type="submit"
+                        class="flex-1 py-2 px-4 rounded-lg transition-colors font-medium"
+                    >
+                        Login
+                    </button>
+                    <button 
+                        type="submit"
+                        class="flex-1 py-2 px-4 rounded-lg transition-colors font-medium"
+                    >
+                        Create
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+    
+    <footer>
+        <span>Alec Davis</span>
+        <a href="https://github.com/Ki11erRabbit/startup">GitHub</a>
+    </footer>
+</body>
 </html>
