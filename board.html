@@ -8,11 +8,12 @@
     <link rel="icon" href="favicon.ico" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="main.css"/>
+    <link rel="stylesheet" href="board.css"/>
     <link rel="stylesheet" href="vars.css"/>
     </head>
     <body>
         <header>
-            <h1>Example Board</h1>
+            <h1 class="mb-4 text-4xl font-bold tracking-tight text-heading md:text-5xl lg:text-6xl">Example Board</h1>
             <nav>
                 <a href="index.html">Home</a>
                 <a href="user.html">📬 UserName</a>
@@ -20,92 +21,106 @@
             <hr/>
         </header>
         <main>
-            <div>
-                <h1>Example Board</h1>
-                <br/>
-            </div>
-            <div>
-                <form method="post">
-                    <input type="text" placeholder=""/>
-                    <input type="image"/>
-                    <button type="submit">Submit</button>
+            <div class="submittion max-w-2xl mx-auto px-4">
+                <form method="post" class="post shadow-md rounded-lg p-6 mb-6 space-y-4">
+                    <input type="text" placeholder="Write something..." class="w-full px-4 py-2 border rounded-lg"/>
+                    <div class="flex gap-4">
+                        <input type="file" accept="image/*" class="flex-1"/>
+                        <button type="submit" class="px-6 py-2 rounded-lg font-medium transition-colors">Submit</button>
+                    </div>
                 </form>
             </div>
-            <div>
-                <menu>
-                    <li>
+            <div class="max-w-2xl mx-auto px-4">
+                <menu class="space-y-4 list-none p-0">
+                    <li class="post shadow-md rounded-lg p-6">
                         <div>
                             <!-- image placeholder-->
-                            <svg width="200" height="200" viewBox="0 0 200 200">
-                                <defs>
-                                    <mask id="cutout">
-                                    <rect width="200" height="200" fill="white"/>
-                                    <circle cx="130" cy="80" r="40" fill="black"/>
-                                    </mask>
-                                </defs>
-                                <circle cx="100" cy="100" r="80" id="circle" mask="url(#cutout)"/>
-                            </svg>
-                            <span>UserName</span>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                            <menu>
-                                <li>
+                            <div class="flex items-start gap-4 mb-4">
+                                <svg width="60" height="60" viewBox="0 0 200 200" class="flex-shrink-0">
+                                    <defs>
+                                        <mask id="cutout">
+                                        <rect width="200" height="200" fill="white"/>
+                                        <circle cx="130" cy="80" r="40" fill="black"/>
+                                        </mask>
+                                    </defs>
+                                    <circle cx="100" cy="100" r="80" id="circle" mask="url(#cutout)"/>
+                                </svg>
+                                <div class="flex-1">
+                                    <span class="font-semibold text-lg">UserName</span>
+                                    <p class="mt-2">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </p>
+                                </div>
+                            </div>
+                            <menu class="reply-border ml-16 space-y-4 list-none p-0 border-l-2 pl-4">
+                                <li class="post rounded-lg p-4">
                                     <div>
                                         <!-- image placeholder-->
-                                        <svg width="200" height="200" viewBox="0 0 200 200">
-                                            <defs>
-                                                <mask id="cutout">
-                                                <rect width="200" height="200" fill="white"/>
-                                                <circle cx="130" cy="80" r="40" fill="black"/>
-                                                </mask>
-                                            </defs>
-                                            <circle cx="100" cy="100" r="80" id="circle" mask="url(#cutout)"/>
-                                        </svg>
-                                        <span> Other UserName</span>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
+                                        <div class="flex items-start gap-4">
+                                            <svg width="50" height="50" viewBox="0 0 200 200" class="flex-shrink-0">
+                                                <defs>
+                                                    <mask id="cutout2">
+                                                    <rect width="200" height="200" fill="white"/>
+                                                    <circle cx="130" cy="80" r="40" fill="black"/>
+                                                    </mask>
+                                                </defs>
+                                                <circle cx="100" cy="100" r="80" id="circle" mask="url(#cutout2)"/>
+                                            </svg>
+                                            <div class="flex-1">
+                                                <span class="font-semibold">Other UserName</span>
+                                                <p class="mt-2 text-sm">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
-                                <li>
+                                <li class="post rounded-lg p-4">
                                     <div>
                                         <!-- image placeholder-->
-                                        <svg width="200" height="200" viewBox="0 0 200 200">
-                                            <defs>
-                                                <mask id="cutout">
-                                                <rect width="200" height="200" fill="white"/>
-                                                <circle cx="130" cy="80" r="40" fill="black"/>
-                                                </mask>
-                                            </defs>
-                                            <circle cx="100" cy="100" r="80" id="circle" mask="url(#cutout)"/>
-                                        </svg>
-                                        <span> Other UserName</span>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
+                                        <div class="flex items-start gap-4">
+                                            <svg width="50" height="50" viewBox="0 0 200 200" class="flex-shrink-0">
+                                                <defs>
+                                                    <mask id="cutout3">
+                                                    <rect width="200" height="200" fill="white"/>
+                                                    <circle cx="130" cy="80" r="40" fill="black"/>
+                                                    </mask>
+                                                </defs>
+                                                <circle cx="100" cy="100" r="80" id="circle" mask="url(#cutout3)"/>
+                                            </svg>
+                                            <div class="flex-1">
+                                                <span class="font-semibold">Other UserName</span>
+                                                <p class="mt-2 text-sm">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
                             </menu>
                         </div>
                     </li>
-                    <li>
+                    <li class="post shadow-md rounded-lg p-6">
                         <div>
                             <!-- image placeholder-->
-                            <svg width="200" height="200" viewBox="0 0 200 200">
-                                <defs>
-                                    <mask id="cutout">
-                                    <rect width="200" height="200" fill="white"/>
-                                    <circle cx="130" cy="80" r="40" fill="black"/>
-                                    </mask>
-                                </defs>
-                                <circle cx="100" cy="100" r="80" id="circle" mask="url(#cutout)"/>
-                            </svg>
-                            <span>Another UserName</span>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                            <menu>
+                            <div class="flex items-start gap-4 mb-4">
+                                <svg width="60" height="60" viewBox="0 0 200 200" class="flex-shrink-0">
+                                    <defs>
+                                        <mask id="cutout4">
+                                        <rect width="200" height="200" fill="white"/>
+                                        <circle cx="130" cy="80" r="40" fill="black"/>
+                                        </mask>
+                                    </defs>
+                                    <circle cx="100" cy="100" r="80" id="circle" mask="url(#cutout4)"/>
+                                </svg>
+                                <div class="flex-1">
+                                    <span class="font-semibold text-lg">Another UserName</span>
+                                    <p class="mt-2">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </p>
+                                </div>
+                            </div>
+                            <menu class="reply-border ml-16 space-y-4 list-none p-0 border-l-2 pl-4">
                                 
                             </menu>
                         </div>
@@ -114,9 +129,7 @@
             </div>
         </main>
         <footer>
-            <hr />
             <span class="text-reset">Alec Davis</span>
-            <br />
             <a href="https://github.com/Ki11erRabbit/startup">GitHub</a>
         </footer>
     </body>
