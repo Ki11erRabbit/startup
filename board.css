@@ -16,13 +16,21 @@
 }
 
 .board-items {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    gap: 1rem;
     list-style-type: none;
-    flex-wrap: wrap;
+    padding: 0;
+}
+
+@media (min-width: 640px) {
+    .board-items {
+        grid-template-columns: repeat(1, minmax(150px, 1fr));
+    }
 }
 
 .board-items li {
     padding: 2vw;
+    text-align: center;
 }
 
