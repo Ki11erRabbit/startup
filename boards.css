@@ -11,13 +11,12 @@
 }
 
 .board h2 {
-    padding: auto;
-    justify-content: center;
+    text-align: center;
 }
 
 .board-items {
     display: grid;
-    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    grid-template-columns: repeat(1, 1fr);
     gap: 1rem;
     list-style-type: none;
     padding: 0;
@@ -25,7 +24,12 @@
 
 @media (min-width: 640px) {
     .board-items {
-        grid-template-columns: repeat(1, minmax(150px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .board {
+        margin-top: 2vh;
+        max-width: 50%;
     }
 }
 
