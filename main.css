@@ -56,6 +56,10 @@ footer {
     border-top: var(--post-border) solid;
 }
 
+#logo {
+    margin: 0 auto;
+}
+
 footer span {
     margin-top: 1vh;
     margin-bottom: 1vh;
