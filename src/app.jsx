@@ -21,13 +21,14 @@ export default function App() {
         
         <Routes>
             <Route path='/' element={<Boards />} exact />
+            <Route path='/boards' element={<Boards />} exact />
             <Route path='/board' element={<Board />} />
             <Route path='/user' element={<User />} />
             <Route path='*' element={<NotFound />} />
         </Routes>
 
         <footer>
-            <span class="text-reset">Alec Davis</span>
+            <span className="text-reset">Alec Davis</span>
             <br />
             <a href="https://github.com/Ki11erRabbit/startup">GitHub</a>
         </footer>
