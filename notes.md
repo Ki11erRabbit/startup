@@ -39,7 +39,7 @@ I do have a lot of CSS experience but using a framework drove me insane since it
 
 ## React Part 1: Routing
 
-Setting up Vite and React was pretty simple. I had a bit of trouble because of conflicting CSS. This isn't as straight forward as you would find with Svelte or Vue, but I made it work in the end. If there was a ton of CSS it would be a real problem. It sure was nice to have the code structured in a more usable way.
+Setting up Vite and React was pretty simple. I had a bit of trouble because of Tailwind not wanting to work locally but it worked fine once I deployed it.
 
 ## React Part 2: Reactivity
 

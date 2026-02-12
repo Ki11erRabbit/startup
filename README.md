@@ -105,9 +105,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Bundled using Vite** - I used vite and had to add a vite.config.js to get tailwind to not break my css locally.
+- [x] **Components** - I have components for user, a view of all boards, and one for an individual board. In the future it should be able to fetch the board from the server.
+- [x] **Router** - I route the 3 pages that I have properly. I can't wait until I add proper boards and whatnot to the frontend.
 
 ## 🚀 React part 2: Reactivity deliverable
 
