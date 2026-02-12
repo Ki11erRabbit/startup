@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 .post {
     border: var(--post-border) solid;
     background-color: var(--post-bg);

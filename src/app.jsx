@@ -13,15 +13,14 @@ export default function App() {
         <header>
             <h1 className="mb-4 text-4xl font-bold tracking-tight text-heading md:text-5xl lg:text-6xl">Startup</h1>
             <nav>
-                <NavLink to="boards">Home</NavLink>
-                <NavLink href="user">📬 UserName</NavLink>
+                <NavLink to="/">Home</NavLink>
+                <NavLink to="user">📬 UserName</NavLink>
             </nav>
         </header>
 
         
         <Routes>
             <Route path='/' element={<Boards />} exact />
-            <Route path='/boards' element={<Boards />} exact />
             <Route path='/board' element={<Board />} />
             <Route path='/user' element={<User />} />
             <Route path='*' element={<NotFound />} />
