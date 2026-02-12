@@ -1,56 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-    <!-- Tell browsers not to scale the viewport automatically -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+
     <title>Startup</title>
-    <link rel="icon" href="favicon.ico" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="main.css"/>
-    <link rel="stylesheet" href="vars.css"/>
-    <link rel="stylesheet" href="boards.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            <h1 class="mb-4 text-4xl font-bold tracking-tight text-heading md:text-5xl lg:text-6xl">Startup</h1>
-            <nav>
-                <a href="index.html">Home</a>
-            <!-- Emoji by username will change depending on messages. It may become an icon instead-->
-                <a href="user.html">📬 UserName</a>
-            </nav>
-        </header>
-        <main>
-            <div class="board">
-                <h2>Boards</h2>
-                <div>
-                    <menu class="board-items">
-                        <li><a href="board.html">Anime</a></li>
-                        <li><a href="board.html">Technology</a></li>
-                        <li><a href="board.html">Video Games</a></li>
-                        <li><a href="board.html">Culture</a></li>
-                        <li><a href="board.html">Health & Fitness</a></li>
-                    </menu>
-                </div>
-            </div>
-            <!-- logo placeholder-->
-            <svg width="200" height="200" viewBox="0 0 200 200" id="logo">
-                <defs>
-                    <mask id="cutout">
-                    <rect width="200" height="200" fill="white"/>
-                    <circle cx="130" cy="80" r="40" fill="black"/>
-                    </mask>
-                </defs>
-                <circle cx="100" cy="100" r="80" id="circle" mask="url(#cutout)"/>
-            </svg>
-        </main>
-        <footer>
-            <span class="text-reset">Alec Davis</span>
-            <br />
-            <a href="https://github.com/Ki11erRabbit/startup">GitHub</a>
-        </footer>
-    </body>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/index.jsx"></script>
+  </body>
 </html>
