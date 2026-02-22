@@ -8,17 +8,18 @@ import { User } from './user/user';
 
 export default function App() {
     const userName = localStorage.getItem("userName") || "Anonymous";
+
     const [hasPosts, setHasPosts] = React.useState(() => {
-        const saved = localStorage.getItem("posts");
-        const posts = saved ? JSON.parse(saved) : [];
-        return posts.length > 0;
+        return Object.keys(localStorage).some(
+            (key) => key.startsWith("posts-") && JSON.parse(localStorage.getItem(key)).length > 0
+        );
     });
 
     React.useEffect(() => {
         const handleStorage = () => {
-            const saved = localStorage.getItem("posts");
-            const posts = saved ? JSON.parse(saved) : [];
-            setHasPosts(posts.length > 0);
+            setHasPosts(Object.keys(localStorage).some(
+                (key) => key.startsWith("posts-") && JSON.parse(localStorage.getItem(key)).length > 0
+            ));
         };
 
         window.addEventListener("storage", handleStorage);
@@ -37,7 +38,7 @@ export default function App() {
                 </header>
                 <Routes>
                     <Route path='/' element={<Boards />} exact />
-                    <Route path='/board' element={<Board />} />
+                    <Route path='/board/:boardName' element={<Board />} />
                     <Route path='/user' element={<User />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
@@ -52,5 +53,5 @@ export default function App() {
 }
 
 function NotFound() {
-  return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
+    return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
 }

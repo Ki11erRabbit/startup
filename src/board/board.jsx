@@ -1,13 +1,15 @@
 import React from 'react';
-
+import { useParams } from 'react-router-dom';
 import '../vars.css';
 import '../app.css';
 import './board.css';
 
 export function Board() {
-    
+    const { boardName } = useParams();
+    const storageKey = `posts-${boardName}`;
+
     const [posts, setPosts] = React.useState(() => {
-        const saved = localStorage.getItem("posts");
+        const saved = localStorage.getItem(storageKey);
         return saved ? JSON.parse(saved) : [];
     });
     const [replyingTo, setReplyingTo] = React.useState(null);
@@ -17,13 +19,12 @@ export function Board() {
     const replyFileRef = React.useRef();
 
     React.useEffect(() => {
-        console.log("Saving posts:", posts);
         try {
-            localStorage.setItem("posts", JSON.stringify(posts));
+            localStorage.setItem(storageKey, JSON.stringify(posts));
         } catch (e) {
             console.warn("localStorage limit reached, posts not saved.", e);
         }
-    }, [posts]);
+    }, [posts, storageKey]);
 
     function createPost(userName, imageBase64, postText) {
         const newPost = { userName, imageBase64, postText, replies: [] };
@@ -50,10 +51,8 @@ export function Board() {
                 const scale = Math.min(1, maxWidth / img.width);
                 canvas.width = img.width * scale;
                 canvas.height = img.height * scale;
-
                 const ctx = canvas.getContext("2d");
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
                 URL.revokeObjectURL(url);
                 resolve(canvas.toDataURL("image/jpeg", quality));
             };
@@ -95,8 +94,9 @@ export function Board() {
 
     return (
         <main>
+            <h2 className="text-2xl font-semibold text-center my-4">{boardName}</h2>
             <div className="submittion max-w-2xl mx-auto px-4">
-                <form method="post" className="post shadow-md rounded-lg p-6 mb-6 space-y-4">
+                <form className="post shadow-md rounded-lg p-6 mb-6 space-y-4">
                     <input ref={textRef} type="text" placeholder="Write something..." className="w-full px-4 py-2 border rounded-lg"/>
                     <div className="flex gap-4">
                         <input ref={fileRef} type="file" accept="image/*" className="flex-1"/>
@@ -132,6 +132,7 @@ export function Board() {
                                     <span className="font-semibold text-lg">{post.userName}</span>
                                     <p className="mt-2">{post.postText}</p>
                                     <button
+                                        type="button"
                                         className="mt-2 text-sm px-3 py-1 rounded-lg font-medium transition-colors"
                                         onClick={() => setReplyingTo(replyingTo === index ? null : index)}
                                     >
@@ -146,6 +147,7 @@ export function Board() {
                                     <div className="flex gap-2">
                                         <input ref={replyFileRef} type="file" accept="image/*" className="flex-1"/>
                                         <button
+                                            type="button"
                                             className="px-4 py-2 rounded-lg font-medium transition-colors"
                                             onClick={() => handleReplySubmit(index)}
                                         >
