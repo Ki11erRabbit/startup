@@ -6,7 +6,19 @@ import './board.css';
 
 export function Board() {
     
-    const [posts, setPosts] = React.useState([]);
+    const [posts, setPosts] = React.useState(() => {
+        const saved = localStorage.getItem("posts");
+        return saved ? JSON.parse(saved) : [];
+    });
+
+    React.useEffect(() => {
+        try {
+            localStorage.setItem("posts", JSON.stringify(posts));
+        } catch (e) {
+            console.warn("localStorage limit reached, posts not saved.", e);
+        }
+    }, [posts]);
+
     const textRef = React.useRef();
     const fileRef = React.useRef();
 
