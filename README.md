@@ -113,8 +113,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - I actually added more features than what I had earlier. I can now make posts and reply to them and have more than one image board.
+- [x] **Hooks** - There are quite a few places where I had to use shared global state and useEffect came in handy for that.
 
 ## 🚀 Service deliverable
 
