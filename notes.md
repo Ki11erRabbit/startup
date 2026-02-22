@@ -43,26 +43,5 @@ Setting up Vite and React was pretty simple. I had a bit of trouble because of T
 
 ## React Part 2: Reactivity
 
-This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the DOM directly.
-
-Handling the toggling of the checkboxes was particularly interesting.
-
-```jsx
-<div className="input-group sound-button-container">
-  {calmSoundTypes.map((sound, index) => (
-    <div key={index} className="form-check form-switch">
-      <input
-        className="form-check-input"
-        type="checkbox"
-        value={sound}
-        id={sound}
-        onChange={() => togglePlay(sound)}
-        checked={selectedSounds.includes(sound)}
-      ></input>
-      <label className="form-check-label" htmlFor={sound}>
-        {sound}
-      </label>
-    </div>
-  ))}
-</div>
-```
+I got a few new features that I wanted but didn't implement yet. With some help from an LLM (note some) I was able to add dynamic adding of new image boards. I ended up doing most of the work. I just had it point me in the right direction.
+But it is cool seeing real data in everything.
