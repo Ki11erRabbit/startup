@@ -7,6 +7,8 @@ import { Boards } from './boards/boards';
 import { User } from './user/user';
 
 export default function App() {
+  const userName = localStorage.getItem("userName") || "Anonymous";
+
   return (
     <BrowserRouter>
     <div className="body bg-dark text-light">
@@ -14,7 +16,7 @@ export default function App() {
             <h1 className="mb-4 text-4xl font-bold tracking-tight text-heading md:text-5xl lg:text-6xl">Startup</h1>
             <nav>
                 <NavLink to="/">Home</NavLink>
-                <NavLink to="user">📬 UserName</NavLink>
+                <NavLink to="user">📬 {userName}</NavLink>
             </nav>
         </header>
 
