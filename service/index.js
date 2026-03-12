@@ -48,15 +48,14 @@ function setAuthCookie(res, authToken) {
 
 let posts = [];
 
-async function createPost(user_num, board, title, body_text, image, reply_id) {
+async function createPost(userName, board, body_text, image, reply_id) {
     const post_id = posts.length;
     const is_reply = reply_id === undefined ? false : true;
     const post = {
-        user_num: user_num,
+        userName: userName,
         board: board,
-        title: title,
-        body_text: body_text,
-        image: image,
+        postText: body_text,
+        imageBase64: image,
         replies: [],
         post_id: post_id,
         is_reply: is_reply
@@ -134,7 +133,7 @@ apiRouter.get('/:board', async (req, res) => {
 // Create a post for a board
 apiRouter.post('/:board', verifyAuth, async (req, res) => {
     const board = req.params["board"];
-    await createPost(req.body.user_id, board, req.body.title, req.body.body_text, req.body.image, req.body.reply_id);
+    await createPost(req.body.userName, board, req.body.postText, req.body.imageBase64, req.body.replyId);
 
     res.status(200).send();
 

@@ -12,33 +12,35 @@ export function Board() {
         const saved = localStorage.getItem(storageKey);
         return saved ? JSON.parse(saved) : [];
     });
+    React.useEffect(() => {
+        fetch(`/${boardName}`)
+        .then((response) => response.json())
+        .then((posts) => {
+            setPosts(posts)
+        })
+    });
     const [replyingTo, setReplyingTo] = React.useState(null);
     const textRef = React.useRef();
     const fileRef = React.useRef();
     const replyTextRef = React.useRef();
     const replyFileRef = React.useRef();
 
-    React.useEffect(() => {
-        try {
-            localStorage.setItem(storageKey, JSON.stringify(posts));
-        } catch (e) {
-            console.warn("localStorage limit reached, posts not saved.", e);
-        }
-    }, [posts, storageKey]);
 
-    function createPost(userName, imageBase64, postText) {
+    async function createPost(userName, imageBase64, postText) {
         const newPost = { userName, imageBase64, postText, replies: [] };
-        setPosts(prev => [...prev, newPost]);
+        await fetch(`/${boardName}`, {
+            method: "POST",
+            headers: { 'content-type': 'application/json' },
+            body: newPost.stringify(newPost)
+        });
     }
 
-    function createReply(postIndex, userName, postText, imageBase64) {
-        setPosts(prev => {
-            const updatedPosts = [...prev];
-            updatedPosts[postIndex] = {
-                ...updatedPosts[postIndex],
-                replies: [...updatedPosts[postIndex].replies, { userName, postText, imageBase64 }]
-            };
-            return updatedPosts;
+    async function createReply(postIndex, userName, postText, imageBase64) {
+        const newPost = { userName, imageBase64, postText, replies: [], replyId: postIndex };
+        await fetch(`/${boardName}`, {
+            method: "POST",
+            headers: { 'content-type': 'application/json' },
+            body: newPost.stringify(newPost)
         });
     }
 
