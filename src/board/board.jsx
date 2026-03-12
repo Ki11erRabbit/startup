@@ -8,17 +8,14 @@ export function Board() {
     const { boardName } = useParams();
     const storageKey = `posts-${boardName}`;
 
-    const [posts, setPosts] = React.useState(() => {
-        const saved = localStorage.getItem(storageKey);
-        return saved ? JSON.parse(saved) : [];
-    });
+    const [posts, setPosts] = React.useState([]);
     React.useEffect(() => {
-        fetch(`/${boardName}`)
+        fetch(`/api/${boardName}`)
         .then((response) => response.json())
         .then((posts) => {
             setPosts(posts)
         })
-    });
+    }, [boardName]);
     const [replyingTo, setReplyingTo] = React.useState(null);
     const textRef = React.useRef();
     const fileRef = React.useRef();
@@ -28,23 +25,23 @@ export function Board() {
 
     async function createPost(userName, imageBase64, postText) {
         const newPost = { userName, imageBase64, postText, replies: [] };
-        await fetch(`/${boardName}`, {
+        await fetch(`/api/${boardName}`, {
             method: "POST",
             headers: { 'content-type': 'application/json' },
-            body: newPost.stringify(newPost)
+            body: JSON.stringify(newPost)
         });
     }
 
     async function createReply(postIndex, userName, postText, imageBase64) {
         const newPost = { userName, imageBase64, postText, replies: [], replyId: postIndex };
-        await fetch(`/${boardName}`, {
+        await fetch(`/api/${boardName}`, {
             method: "POST",
             headers: { 'content-type': 'application/json' },
-            body: newPost.stringify(newPost)
+            body: JSON.stringify(newPost)
         });
     }
 
-    const compressImage = (file, maxWidth = 800, quality = 0.7) => {
+    const compressImage = (file, maxWidth = 800, quality = 0.2) => {
         return new Promise((resolve) => {
             const img = new Image();
             const url = URL.createObjectURL(file);

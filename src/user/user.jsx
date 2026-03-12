@@ -5,12 +5,45 @@ import './user.css';
 
 export function User() {
     const userNameRef = React.useRef();
+    const passwordRef = React.useRef();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         const userName = userNameRef.current.value.trim();
+        const password = passwordRef.current.value.trim();
         if (!userName) return;
-        localStorage.setItem("userName", userName);
+
+        let res = await fetch('/api/login', {
+            method: "POST",
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ email: userName, password: password })
+        });
+
+        if (res.ok) return;
+
+        const body = await res.json();
+
+        localStorage.setItem("userName", body.email);
+        window.location.href = "/";
+    };
+
+    const handleSignup = async (e) => {
+        e.preventDefault();
+        const userName = userNameRef.current.value.trim();
+        const password = passwordRef.current.value.trim();
+        if (!userName) return;
+
+        let res = await fetch('/api/create', {
+            method: "POST",
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ email: userName, password: password })
+        });
+
+        if (res.ok) return;
+
+        const body = await res.json();
+
+        localStorage.setItem("userName", body.email);
         window.location.href = "/";
     };
 
@@ -26,6 +59,7 @@ export function User() {
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                     />
                     <input
+                        ref={passwordRef}
                         type="password"
                         placeholder="password"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
@@ -41,7 +75,7 @@ export function User() {
                         <button
                             type="button"
                             className="flex-1 py-2 px-4 rounded-lg transition-colors font-medium"
-                            onClick={handleLogin}
+                            onClick={handleSignup}
                         >
                             Create
                         </button>
