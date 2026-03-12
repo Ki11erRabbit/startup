@@ -127,6 +127,21 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
+
+apiRouter.post('/replies', verifyAuth, async (req, res) => {
+    const user = await findUser('email', req.body.email);
+    if (user) {
+        let index = 0;
+        for (const post of posts) {
+            if (user.email === post.userName && post.replies.length != 0) {
+                index += 1;
+            }
+        }
+        res.send({ replies: index });
+    }
+    res.status(401).send({ msg: 'Unauthorized' });
+});
+
 // Get a board's posts
 apiRouter.get('/:board', async (req, res) => {
     const board = req.params["board"];

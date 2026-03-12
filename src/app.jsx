@@ -10,20 +10,20 @@ export default function App() {
     const userName = localStorage.getItem("userName") || "Anonymous";
 
     const [hasPosts, setHasPosts] = React.useState(() => {
-        return Object.keys(localStorage).some(
-            (key) => key.startsWith("posts-") && JSON.parse(localStorage.getItem(key)).length > 0
-        );
+        return false
     });
 
     React.useEffect(() => {
-        const handleStorage = () => {
-            setHasPosts(Object.keys(localStorage).some(
-                (key) => key.startsWith("posts-") && JSON.parse(localStorage.getItem(key)).length > 0
-            ));
-        };
+        fetch('/api/replies', {
+            method: "POST",
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ email: userName })
+        }).then((res) => res.json())
+        .then((body) => {
+            const replies = body.replies;
+            setHasPosts(replies > 0 ? true : false);
+        });
 
-        window.addEventListener("storage", handleStorage);
-        return () => window.removeEventListener("storage", handleStorage);
     }, []);
 
     return (

@@ -19,9 +19,10 @@ export function User() {
             body: JSON.stringify({ email: userName, password: password })
         });
 
-        if (res.ok) return;
+        if (!res.ok) return;
 
         const body = await res.json();
+        console.log(body);
 
         localStorage.setItem("userName", body.email);
         window.location.href = "/";
@@ -39,9 +40,10 @@ export function User() {
             body: JSON.stringify({ email: userName, password: password })
         });
 
-        if (res.ok) return;
+        if (!res.ok) return;
 
         const body = await res.json();
+        console.log(body);
 
         localStorage.setItem("userName", body.email);
         window.location.href = "/";
