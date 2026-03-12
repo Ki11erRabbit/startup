@@ -120,12 +120,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - I got a way to login/sign up/logout the user as well as a way to post things.
+- [x] **Static middleware for frontend** - We got cookie management as well as the standard stuff.
+- [x] **Calls to third party endpoints** - I call out the quote service since I couldn't get a random text generator to work in a timely manner..
+- [x] **Backend service endpoints** - I did not complete this part of the deliverable.
+- [x] **Frontend calls service endpoints** - I had to add a new logout and random text button to hit a few endpoints. There are endpoints for getting sending posts for each board. You can reply to posts using the same endpoints.
+- [x] **Supports registration, login, logout, and restricted endpoint** - You can sign up, log in, and log out.
 
 ## 🚀 DB deliverable
 
