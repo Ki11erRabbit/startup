@@ -4,6 +4,9 @@ import '../vars.css';
 import '../app.css';
 import './board.css';
 
+const ENABLE_RANDOM_TEXT = true;
+
+
 export function Board() {
     const { boardName } = useParams();
     const storageKey = `posts-${boardName}`;
@@ -31,7 +34,7 @@ export function Board() {
             body: JSON.stringify(newPost)
         });
 
-        window.location.href = `/board/${boardName}`;
+        //window.location.href = `/board/${boardName}`;
     }
 
     async function createReply(postIndex, userName, postText, imageBase64) {
@@ -78,6 +81,25 @@ export function Board() {
         fileRef.current.value = "";
     };
 
+    const handleRandomSubmit = async (e) => {
+        e.preventDefault();
+        const userName = localStorage.getItem("userName") || "Anonymous";
+
+        const res = await fetch('https://quote.cs260.click');
+        const randomText = await res.json();
+
+        const image = fileRef.current.files[0];
+
+        if (image) {
+            const base64 = await compressImage(image);
+            createPost(userName, base64.split(",")[1], randomText.quote);
+        } else {
+            createPost(userName, "", randomText);
+        }
+
+        fileRef.current.value = "";
+    };
+
     const handleReplySubmit = async (index) => {
         const userName = localStorage.getItem("userName") || "Anonymous";
         const image = replyFileRef.current.files[0];
@@ -105,6 +127,11 @@ export function Board() {
                         <button type="button" className="px-6 py-2 rounded-lg font-medium transition-colors" onClick={handleSubmit}>
                             Submit
                         </button>
+                        {ENABLE_RANDOM_TEXT && (
+                            <button type="button" className="px-6 py-2 rounded-lg font-medium transition-colors" onClick={handleRandomSubmit}>
+                                Submit with random text
+                            </button>
+                        )}
                     </div>
                 </form>
             </div>
