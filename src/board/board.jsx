@@ -33,8 +33,6 @@ export function Board() {
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newPost)
         });
-
-        window.location.href = `/board/${boardName}`;
     }
 
     async function createReply(postIndex, userName, postText, imageBase64) {
@@ -44,7 +42,6 @@ export function Board() {
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newPost)
         });
-        window.location.href = `/board/${boardName}`;
     }
 
     const compressImage = (file, maxWidth = 800, quality = 0.2) => {
