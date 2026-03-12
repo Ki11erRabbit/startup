@@ -34,7 +34,7 @@ export function Board() {
             body: JSON.stringify(newPost)
         });
 
-        //window.location.href = `/board/${boardName}`;
+        window.location.href = `/board/${boardName}`;
     }
 
     async function createReply(postIndex, userName, postText, imageBase64) {

@@ -55,7 +55,7 @@ export default function App() {
 function UserNav({ userName, hasPosts }) {
     async function handleLogout() {
         localStorage.removeItem("userName");
-        await fetch('/api/logiout', {
+        await fetch('/api/logout', {
             method: "DELETE",
         });
 
