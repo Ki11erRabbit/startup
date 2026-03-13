@@ -125,7 +125,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Calls to third party endpoints** - I call out the quote service since I couldn't get a random text generator to work in a timely manner..
 - [x] **Backend service endpoints** - I did not complete this part of the deliverable.
 - [x] **Frontend calls service endpoints** - I had to add a new logout and random text button to hit a few endpoints. There are endpoints for getting sending posts for each board. You can reply to posts using the same endpoints.
-- [x] **Supports registration, login, logout, and restricted endpoint** - You can sign up, log in, and log out.
+- [x] **Supports registration, login, logout, and restricted endpoint** - You can sign up, log in, and log out. You can only create new boards if you are logged in.
 
 ## 🚀 DB deliverable
 

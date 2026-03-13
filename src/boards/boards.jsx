@@ -5,19 +5,26 @@ import '../app.css';
 import './boards.css';
 
 export function Boards() {
-    const [boards, setBoards] = React.useState(() => {
-        const saved = localStorage.getItem("boards");
-        return saved ? JSON.parse(saved) : ["Anime", "Technology", "Video Games", "Culture", "Health & Fitness"];
-    });
+    const [boards, setBoards] = React.useState([]);
     const [newBoard, setNewBoard] = React.useState("");
+    React.useEffect(() => {
+        fetch('/api/board')
+        .then((response) => response.json())
+        .then((boards) => {
+            setBoards(boards)
+        })
+    }, [boards]);
 
-    const handleCreate = () => {
+
+    const handleCreate = async () => {
         const name = newBoard.trim();
         if (!name || boards.includes(name)) return;
-        const updated = [...boards, name];
-        setBoards(updated);
-        localStorage.setItem("boards", JSON.stringify(updated));
-        setNewBoard("");
+        const newBoard = { board: newBoard };
+        await fetch('/api/board', {
+            method: "POST",
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(newBoard)
+        });
     };
 
     return (

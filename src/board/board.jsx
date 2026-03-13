@@ -9,11 +9,10 @@ const ENABLE_RANDOM_TEXT = true;
 
 export function Board() {
     const { boardName } = useParams();
-    const storageKey = `posts-${boardName}`;
 
     const [posts, setPosts] = React.useState([]);
     React.useEffect(() => {
-        fetch(`/api/${boardName}`)
+        fetch(`/api/board/${boardName}`)
         .then((response) => response.json())
         .then((posts) => {
             setPosts(posts)
@@ -28,20 +27,24 @@ export function Board() {
 
     async function createPost(userName, imageBase64, postText) {
         const newPost = { userName, imageBase64, postText, replies: [] };
-        await fetch(`/api/${boardName}`, {
+        await fetch(`/api/board/${boardName}`, {
             method: "POST",
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newPost)
         });
+
+        window.location.href = `/board/${encodeURIComponent(boardName)}`;
     }
 
     async function createReply(postIndex, userName, postText, imageBase64) {
         const newPost = { userName, imageBase64, postText, replies: [], replyId: postIndex };
-        await fetch(`/api/${boardName}`, {
+        await fetch(`/api/board/${boardName}`, {
             method: "POST",
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newPost)
         });
+
+        window.location.href = `/board/${encodeURIComponent(boardName)}`;
     }
 
     const compressImage = (file, maxWidth = 800, quality = 0.2) => {

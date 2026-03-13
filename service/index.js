@@ -48,6 +48,16 @@ function setAuthCookie(res, authToken) {
   });
 }
 
+let boards = ["Anime", "Technology", "Video Games", "Culture", "Health & Fitness"];
+
+async function createBoard(name) {
+    if (!name) return null;
+    if (boards.includes(name)) return null;
+
+    boards.push(name);
+    return name;
+}
+
 let posts = [];
 
 async function createPost(userName, board, body_text, image, reply_id) {
@@ -142,17 +152,26 @@ apiRouter.post('/replies', verifyAuth, async (req, res) => {
     res.status(401).send({ msg: 'Unauthorized' });
 });
 
+apiRouter.post('/board', verifyAuth, async (req, res) => {
+    const board = req.body.board;
+    createBoard(board);
+    res.status(200).send();
+});
+
+apiRouter.get('/board', async (req, res) => {
+    res.status(200).send(JSON.stringify(boards));
+});
+
 // Get a board's posts
-apiRouter.get('/:board', async (req, res) => {
+apiRouter.get('/board/:board', async (req, res) => {
     const board = req.params["board"];
     const posts = await getPosts(board);
 
     res.send(posts);
-
 });
 
 // Create a post for a board
-apiRouter.post('/:board', verifyAuth, async (req, res) => {
+apiRouter.post('/board/:board', async (req, res) => {
     const board = req.params["board"];
     await createPost(req.body.userName, board, req.body.postText, req.body.imageBase64, req.body.replyId);
 
