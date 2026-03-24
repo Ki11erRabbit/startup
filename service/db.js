@@ -65,11 +65,12 @@ async function createPost(post) {
 }
 
 async function createReplyPost(post, reply_id) {
-  createPost(post);
-  return postCollection.findOneAndUpdate(
+  await createPost(post);
+  const res = postCollection.findOneAndUpdate(
     { post_id: reply_id },
-    { $push: { replies: post} }
+    { $push: { replies: post } }
   );
+  return await res;
 }
 
 async function getBoardPosts(board) {
