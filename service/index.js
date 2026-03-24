@@ -2,6 +2,7 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
+const DB = require('./db.js');
 const app = express();
 
 const authCookieName = 'token';
@@ -16,11 +17,10 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-let users = [];
 
 async function createUser(email, password) {
     const passwordHash = await bcrypt.hash(password, 10);
-    const user_id = users.length;
+    const user_id = await DB.nextUser;
 
     const user = {
         email: email,
@@ -28,14 +28,17 @@ async function createUser(email, password) {
         token: uuid.v4(),
         user_id: user_id,
     };
-    users.push(user);
+    await DB.addUser(user);
     return user;
 }
 
 async function findUser(field, value) {
     if (!value) return null;
 
-    return users.find((u) => u[field] === value);
+    if (field === 'token') {
+      return await DB.getUserByToken(value);
+    }
+    return await DB.getUser(value);
 }
 
 // setAuthCookie in the HTTP response
@@ -48,20 +51,19 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-let boards = ["Anime", "Technology", "Video Games", "Culture", "Health & Fitness"];
+//let boards = ["Anime", "Technology", "Video Games", "Culture", "Health & Fitness"];
 
 async function createBoard(name) {
     if (!name) return null;
-    if (boards.includes(name)) return null;
+    if (! await DB.findBoard({ name: name })) return null;
 
-    boards.push(name);
+    await DB.addBoard({ name: name });
     return name;
 }
 
-let posts = [];
 
 async function createPost(userName, board, body_text, image, reply_id) {
-    const post_id = posts.length;
+    const post_id = DB.nextPost();
     const is_reply = reply_id === undefined ? false : true;
     const post = {
         userName: userName,
@@ -73,24 +75,15 @@ async function createPost(userName, board, body_text, image, reply_id) {
         is_reply: is_reply
     };
     if (reply_id !== undefined) {
-        const parent = posts[Number(reply_id)];
-        if (!parent) {
-            return res.status(404).send({ msg: 'Parent post not found' });
-        }
-        parent.replies.push(post);
+        await DB.createReplyPost(post, reply_id);
+    } else {
+      await DB.createPost(post);
     }
-    posts.push(post);
     return post;
 }
 
 async function getPosts(board) {
-    let out = [];
-
-    for (const post of posts) {
-        if (post.board === board && !post.is_reply) {
-            out.push(post);
-        }
-    }
+    let out = await DB.getBoardPosts(board);
     return out;
 }
 
