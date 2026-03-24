@@ -47,7 +47,7 @@ async function addBoard(board) {
   return postCollection.insertOne(board);
 }
 
-function findBoard(board) {
+async function findBoard(board) {
   return boardCollection.findOne({ name: board });
 }
 
@@ -73,7 +73,12 @@ async function createReplyPost(post, reply_id) {
 }
 
 async function getBoardPosts(board) {
-  const cursor = postCollection.find({ is_reply: { $ne: true } }).sort({ post_id: 1 });
+  const cursor = postCollection.find({ is_reply: { $ne: true }, board: board }).sort({ post_id: 1 });
+  return cursor.toArray();
+}
+
+async function getPosts() {
+  const cursor = postCollection.find({ });
   return cursor.toArray();
 }
 
@@ -92,4 +97,5 @@ module.exports = {
   createReplyPost,
   nextPost,
   getBoardPosts,
+  getPosts
 };

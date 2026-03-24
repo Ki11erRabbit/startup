@@ -20,7 +20,7 @@ app.use(`/api`, apiRouter);
 
 async function createUser(email, password) {
     const passwordHash = await bcrypt.hash(password, 10);
-    const user_id = await DB.nextUser;
+    const user_id = await DB.nextUser();
 
     const user = {
         email: email,
@@ -36,7 +36,8 @@ async function findUser(field, value) {
     if (!value) return null;
 
     if (field === 'token') {
-      return await DB.getUserByToken(value);
+      const res = await DB.getUserByToken(value);
+      return res;
     }
     return await DB.getUser(value);
 }
@@ -55,7 +56,7 @@ function setAuthCookie(res, authToken) {
 
 async function createBoard(name) {
     if (!name) return null;
-    if (! await DB.findBoard({ name: name })) return null;
+    if (await DB.findBoard({ name: name })) return null;
 
     await DB.addBoard({ name: name });
     return name;
@@ -63,7 +64,7 @@ async function createBoard(name) {
 
 
 async function createPost(userName, board, body_text, image, reply_id) {
-    const post_id = DB.nextPost();
+    const post_id = await DB.nextPost();
     const is_reply = reply_id === undefined ? false : true;
     const post = {
         userName: userName,
@@ -104,6 +105,7 @@ apiRouter.post('/login', async (req, res) => {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
       setAuthCookie(res, user.token);
+      await DB.updateUser(user);
       res.send({ email: user.email });
       return;
     }
@@ -135,24 +137,28 @@ apiRouter.post('/replies', verifyAuth, async (req, res) => {
     const user = await findUser('email', req.body.email);
     if (user) {
         let index = 0;
+        const posts = await DB.getPosts();
         for (const post of posts) {
             if (user.email === post.userName && post.replies.length != 0) {
                 index += 1;
             }
         }
         res.send({ replies: index });
+        return;
     }
     res.status(401).send({ msg: 'Unauthorized' });
 });
 
 apiRouter.post('/board', verifyAuth, async (req, res) => {
     const board = req.body.board;
-    createBoard(board);
+    await createBoard(board);
     res.status(200).send();
 });
 
 apiRouter.get('/board', async (req, res) => {
-    res.status(200).send(JSON.stringify(boards));
+    const boards = await DB.getBoards();
+    const names = boards.map((obj) => obj.name);
+    res.status(200).send(JSON.stringify(names));
 });
 
 // Get a board's posts

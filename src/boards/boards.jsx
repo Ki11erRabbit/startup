@@ -13,17 +13,17 @@ export function Boards() {
         .then((boards) => {
             setBoards(boards)
         })
-    }, [boards]);
+    }, []);
 
 
     const handleCreate = async () => {
         const name = newBoard.trim();
         if (!name || boards.includes(name)) return;
-        const newBoard = { board: newBoard };
+        const boardPayload = { board: newBoard };
         await fetch('/api/board', {
             method: "POST",
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(newBoard)
+            body: JSON.stringify(boardPayload)
         });
     };
 
