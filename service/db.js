@@ -44,7 +44,7 @@ async function updateUserRemoveAuth(user) {
 }
 
 async function addBoard(board) {
-  return postCollection.insertOne(board);
+  return boardCollection.insertOne(board);
 }
 
 async function findBoard(board) {
@@ -73,7 +73,7 @@ async function createReplyPost(post, reply_id) {
 }
 
 async function getBoardPosts(board) {
-  const cursor = postCollection.find({ is_reply: { $ne: true }, board: board }).sort({ post_id: 1 });
+  const cursor = postCollection.find({ is_reply: { $ne: true }, board: board }).sort({ post_id: -1 });
   return cursor.toArray();
 }
 

@@ -56,7 +56,7 @@ function setAuthCookie(res, authToken) {
 
 async function createBoard(name) {
     if (!name) return null;
-    if (await DB.findBoard({ name: name })) return null;
+    if (await DB.findBoard(name)) return null;
 
     await DB.addBoard({ name: name });
     return name;
