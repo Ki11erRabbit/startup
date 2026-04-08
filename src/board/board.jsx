@@ -11,13 +11,21 @@ export function Board() {
     const { boardName } = useParams();
 
     const [posts, setPosts] = React.useState([]);
-    React.useEffect(() => {
-        fetch(`/api/board/${boardName}`)
-        .then((response) => response.json())
-        .then((posts) => {
-            setPosts(posts)
-        })
+    
+    const fetchPosts = React.useCallback(async () => {
+        try {
+            const response = await fetch(`/api/board/${boardName}`);
+            const postsData = await response.json();
+            setPosts(postsData);
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+        }
     }, [boardName]);
+
+    React.useEffect(() => {
+        fetchPosts();
+    }, [boardName, fetchPosts]);
+
     const [replyingTo, setReplyingTo] = React.useState(null);
     const textRef = React.useRef();
     const fileRef = React.useRef();
@@ -33,18 +41,31 @@ export function Board() {
             body: JSON.stringify(newPost)
         });
 
-        window.location.href = `/board/${encodeURIComponent(boardName)}`;
+        // Refresh posts instead of reloading page
+        await fetchPosts();
+        textRef.current.value = "";
+        fileRef.current.value = "";
     }
 
     async function createReply(postIndex, userName, postText, imageBase64) {
-        const newPost = { userName, imageBase64, postText, replies: [], replyId: postIndex };
+        // Get the post_id from the posts array using the index
+        const replyToPost = posts[postIndex];
+        if (!replyToPost || replyToPost.post_id === undefined) {
+            console.error('Invalid post to reply to');
+            return;
+        }
+        const newPost = { userName, imageBase64, postText, replies: [], replyId: replyToPost.post_id };
         await fetch(`/api/board/${boardName}`, {
             method: "POST",
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newPost)
         });
 
-        window.location.href = `/board/${encodeURIComponent(boardName)}`;
+        // Refresh posts instead of reloading page
+        await fetchPosts();
+        replyTextRef.current.value = "";
+        replyFileRef.current.value = "";
+        setReplyingTo(null);
     }
 
     const compressImage = (file, maxWidth = 800, quality = 0.2) => {
@@ -106,14 +127,10 @@ export function Board() {
 
         if (image) {
             const base64 = await compressImage(image);
-            createReply(index, userName, replyTextRef.current.value, base64.split(",")[1]);
+            await createReply(index, userName, replyTextRef.current.value, base64.split(",")[1]);
         } else {
-            createReply(index, userName, replyTextRef.current.value, "");
+            await createReply(index, userName, replyTextRef.current.value, "");
         }
-
-        replyTextRef.current.value = "";
-        replyFileRef.current.value = "";
-        setReplyingTo(null);
     };
 
     return (

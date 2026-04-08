@@ -5,12 +5,14 @@ import { BrowserRouter, NavLink, Route, Routes, useNavigate } from 'react-router
 import { Board } from './board/board';
 import { Boards } from './boards/boards';
 import { User } from './user/user';
+import { useWebSocket } from './hooks/useWebSocket';
 
 export default function App() {
   const userName = localStorage.getItem("userName") || "Anonymous";
   const [hasPosts, setHasPosts] = React.useState(() => {
     return false
   });
+  useWebSocket();
 
   React.useEffect(() => {
     if (userName === "Anonymous") return;
