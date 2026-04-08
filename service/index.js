@@ -3,7 +3,11 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const DB = require('./db.js');
+const http = require('http');
+const setupWebSocketServer = require('./websocket.js');
 const app = express();
+const server = http.createServer(app);
+const wss = setupWebSocketServer(server);
 
 const authCookieName = 'token';
 
@@ -174,11 +178,30 @@ apiRouter.post('/board/:board', async (req, res) => {
     const board = req.params["board"];
     await createPost(req.body.userName, board, req.body.postText, req.body.imageBase64, req.body.replyId);
 
+    if (req.body.replyId !== undefined) {
+        const allPosts = await DB.getPosts();
+        let repliedToUser = null;
+        for (const post of allPosts) {
+            if (post.post_id === req.body.replyId) {
+                repliedToUser = post.userName;
+                break;
+            }
+        }
+        if (repliedToUser) {
+            wss.broadcast(JSON.stringify({
+                type: 'newReply',
+                user: repliedToUser,
+                replyFromUser: req.body.userName,
+                board: board
+            }));
+        }
+    }
+
     res.status(200).send();
 
 });
 
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
