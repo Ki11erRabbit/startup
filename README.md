@@ -138,8 +138,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - Backend listens for users to connect to notify them.
+- [x] **Frontend makes WebSocket connection** - When a user is logged in, they can connect to the backend to be notified of a new reply.
+- [x] **Data sent over WebSocket connection** - User can see who replied to them.
+- [x] **WebSocket data displayed** - User sees an alert when they get a reply.
 - [ ] **Application is fully functional** - I did not complete this part of the deliverable.
