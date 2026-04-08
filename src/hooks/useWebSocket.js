@@ -1,9 +1,14 @@
 import React from 'react';
 
-export function useWebSocket() {
+export function useWebSocket(isLoggedIn) {
   const [isConnected, setIsConnected] = React.useState(false);
 
   React.useEffect(() => {
+    if (!isLoggedIn) {
+      setIsConnected(false);
+      return;
+    }
+
     // Determine the WebSocket protocol based on current page protocol
     const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     // Connect to localhost:4000 for backend

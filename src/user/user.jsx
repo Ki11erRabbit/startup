@@ -6,6 +6,8 @@ import './user.css';
 export function User() {
     const userNameRef = React.useRef();
     const passwordRef = React.useRef();
+    const [loginError, setLoginError] = React.useState("");
+    const [signupError, setSignupError] = React.useState("");
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -13,13 +15,22 @@ export function User() {
         const password = passwordRef.current.value.trim();
         if (!userName) return;
 
+        setLoginError("");
+
         let res = await fetch('/api/login', {
             method: "POST",
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ email: userName, password: password })
         });
 
-        if (!res.ok) return;
+        if (!res.ok) {
+            if (res.status === 401) {
+                setLoginError("Invalid email or password");
+            } else {
+                setLoginError("Login failed. Please try again.");
+            }
+            return;
+        }
 
         const body = await res.json();
         console.log(body);
@@ -34,13 +45,22 @@ export function User() {
         const password = passwordRef.current.value.trim();
         if (!userName) return;
 
+        setSignupError("");
+
         let res = await fetch('/api/create', {
             method: "POST",
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ email: userName, password: password })
         });
 
-        if (!res.ok) return;
+        if (!res.ok) {
+            if (res.status === 409) {
+                setSignupError("An account with this email already exists");
+            } else {
+                setSignupError("Signup failed. Please try again.");
+            }
+            return;
+        }
 
         const body = await res.json();
         console.log(body);
@@ -59,13 +79,27 @@ export function User() {
                         type="text"
                         placeholder="your@email.com"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
+                        onChange={() => {
+                            setLoginError("");
+                            setSignupError("");
+                        }}
                     />
                     <input
                         ref={passwordRef}
                         type="password"
                         placeholder="password"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
+                        onChange={() => {
+                            setLoginError("");
+                            setSignupError("");
+                        }}
                     />
+                    {loginError && (
+                        <div className="text-red-600 text-sm text-center">{loginError}</div>
+                    )}
+                    {signupError && (
+                        <div className="text-red-600 text-sm text-center">{signupError}</div>
+                    )}
                     <div className="flex gap-4">
                         <button
                             type="button"

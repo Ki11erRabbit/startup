@@ -142,4 +142,4 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Frontend makes WebSocket connection** - When a user is logged in, they can connect to the backend to be notified of a new reply.
 - [x] **Data sent over WebSocket connection** - User can see who replied to them.
 - [x] **WebSocket data displayed** - User sees an alert when they get a reply.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Application is fully functional** - Application doesn't have weird crashes.

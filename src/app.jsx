@@ -12,7 +12,7 @@ export default function App() {
   const [hasPosts, setHasPosts] = React.useState(() => {
     return false
   });
-  useWebSocket();
+  useWebSocket(userName !== "Anonymous");
 
   React.useEffect(() => {
     if (userName === "Anonymous") return;
