@@ -11,8 +11,9 @@ export function useWebSocket(isLoggedIn) {
 
     // Determine the WebSocket protocol based on current page protocol
     const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    // Connect to localhost:4000 for backend
-    const wsUrl = `${wsProtocol}//localhost:4000`;
+    // In development, connect to localhost:4000; in production, use same host
+    const backendHost = import.meta.env.DEV ? 'localhost:4000' : window.location.host;
+    const wsUrl = `${wsProtocol}//${backendHost}`;
     const ws = new WebSocket(wsUrl);
 
     ws.onopen = () => {
