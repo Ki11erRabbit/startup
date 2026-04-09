@@ -115,7 +115,7 @@ export function Board() {
             const base64 = await compressImage(image);
             createPost(userName, base64.split(",")[1], randomText.quote);
         } else {
-            createPost(userName, "", randomText);
+            createPost(userName, "", randomText.quote);
         }
 
         fileRef.current.value = "";
